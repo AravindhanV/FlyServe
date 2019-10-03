@@ -1,0 +1,119 @@
+body{
+	background-image: url("../assets/bg.jpeg");
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+.flight{
+	position: absolute;
+	width: 224px;
+	height: 175px;
+	left: 554px;
+	top: 60px;
+}
+
+.Text2{
+	position: absolute;
+	width: 439px;
+	height: 50px;
+	left: 1162px;
+	top: 280px;
+
+	font-family: Gugi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 60px;
+	text-align: center;
+	line-height: 94px;
+
+	color: #FFFFFF;
+}
+
+.rectangle {
+  	position: absolute;
+	width: 540px;
+	height: 597px;
+	left: 1111px;
+	top: 241px;
+	opacity: 0.5;
+  	background-color: #FFFFFF;
+}
+
+.EmailBoxPosition{
+	position: absolute;
+	width: 439px;
+	height: 42px;
+	left:1162px;
+	top: 447px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #E8E8E8;
+}
+
+
+.PasswordBoxPosition{
+	position: absolute;
+	width: 439px;
+	height: 42px;
+	left:1162px;
+	top: 537px;
+}
+
+.SubmitBoxPosition{
+	position: absolute;
+	width: 439px;
+	height: 42px;
+	left: 1162px;
+	top: 629px;
+}
+
+.button {
+  	background-color: #22A6FF;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+ 	width: 100%;
+  	cursor: pointer;
+}
+
+.Text{
+	position: absolute;
+	width: 599px;
+	height: 72px;
+	left: 772px;
+	top: 5px;
+
+	font-family: Kaushan Script;
+	font-style: normal;	
+	font-weight: normal;
+	font-size: 80px;
+
+	color: #000000;
+}
+
+.Text1{
+	position: absolute;
+	width: 571px;
+	height: 194px;
+	left: 248px;
+	top: 364px;
+
+	font-family: Gugi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 75px;
+	line-height: 94px;
+
+	color: #FFFFFF;
+}
