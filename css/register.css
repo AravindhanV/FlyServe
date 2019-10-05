@@ -1,7 +1,7 @@
 body{
 	background-image: url("../assets/bg.jpeg");
   	background-repeat: no-repeat;
-  	background-size: cover;
+	  background-size: cover;
 }
 
 .flight{
@@ -10,92 +10,6 @@ body{
 	height: 175px;
 	left: 675px;
 	top: 40px;
-}
-
-.Text2{
-	position: absolute;
-	width: 439px;
-	height: 50px;
-	left: 1162px;
-	top: 280px;
-
-	font-family: Gugi;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 60px;
-	text-align: center;
-	line-height: 94px;
-
-	color: #FFFFFF;
-}
-
-.rectangle {
-  	position: absolute;
-	width: 540px;
-	height: 597px;
-	left: 1111px;
-	top: 241px;
-	opacity: 0.5;
-  	background-color: #FFFFFF;
-}
-
-.EmailBoxPosition{
-	position: absolute;
-	width: 439px;
-	height: 42px;
-	left:1162px;
-	top: 447px;
-}
-
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #E8E8E8;
-}
-
-
-.PasswordBoxPosition{
-	position: absolute;
-	width: 439px;
-	height: 42px;
-	left:1162px;
-	top: 537px;
-}
-
-.SubmitBoxPosition{
-	position: absolute;
-	width: 439px;
-	height: 42px;
-	left: 1162px;
-	top: 629px;
-}
-
-.SignUpPosition{
-	position: absolute;
-	width: 439px;
-	height: 42px;
-	left: 1162px;
-	top: 700px;
-	font-weight: 700;
-	font-size: 20px;
-	text-align: right;
-}
-
-.button {
-  	background-color: #22A6FF;
-  	border: none;
-  	color: white;
-  	padding: 15px 32px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
-  	font-size: 16px;
- 	width: 100%;
-  	cursor: pointer;
 }
 
 .Text{
@@ -111,6 +25,85 @@ input[type=text], select {
 	font-size: 80px;
 
 	color: #000000;
+}
+
+.Text2{
+	font-family: Gugi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 60px;
+	text-align: center;
+	line-height: 94px;
+	color: #FFFFFF;
+}
+
+.register_form {
+	margin-top: 225px;
+	margin-bottom: auto;
+}
+
+.rectangle {
+	width: 540px;
+	height: 650px;
+	margin: auto;
+  	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.EmailBoxPosition{
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5%;
+	width: 439px;
+	height: 42px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #E8E8E8;
+}
+
+input, select {
+	width: 100%;
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background-color: #E8E8E8;
+  }
+
+
+.PasswordBoxPosition{
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5%;
+	width: 439px;
+	height: 42px;
+}
+
+.SubmitBoxPosition{
+	margin-right: auto;
+	margin-left: auto;
+	width: 439px;
+	height: 42px;
+}
+
+.button {
+  	background-color: #22A6FF;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+ 	width: 100%;
+  	cursor: pointer;
 }
 
 .Text1{
