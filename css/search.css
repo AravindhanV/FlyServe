@@ -1,0 +1,123 @@
+body{
+	background-image: url("../assets/bg.jpeg");
+  	background-repeat: no-repeat;
+	  background-size: cover;
+}
+
+.flight{
+	position: absolute;
+	width: 224px;
+	height: 175px;
+	left: 675px;
+	top: 40px;
+}
+
+.Text{
+	position: absolute;
+	width: 599px;
+	height: 72px;
+	left: 875px;
+	top: -15px;
+
+	font-family: Kaushan Script;
+	font-style: normal;	
+	font-weight: normal;
+	font-size: 80px;
+
+	color: #000000;
+}
+
+.Text2{
+	font-family: Gugi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 60px;
+	text-align: center;
+	line-height: 94px;
+	color: #FFFFFF;
+}
+
+.register_form {
+	margin-top: 225px;
+	margin-bottom: auto;
+}
+
+.rectangle {
+	width: 540px;
+	height: 650px;
+	margin: auto;
+  	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.EmailBoxPosition{
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5%;
+	width: 439px;
+	height: 42px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #E8E8E8;
+}
+
+input, select {
+	width: 100%;
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background-color: #E8E8E8;
+  }
+
+
+.PasswordBoxPosition{
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5%;
+	width: 439px;
+	height: 42px;
+}
+
+.SubmitBoxPosition{
+	margin-right: auto;
+	margin-left: auto;
+	width: 439px;
+	height: 42px;
+}
+
+.button {
+  	background-color: #22A6FF;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+ 	width: 100%;
+  	cursor: pointer;
+}
+
+.Text1{
+	position: absolute;
+	width: 571px;
+	height: 194px;
+	left: 248px;
+	top: 364px;
+
+	font-family: Gugi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 75px;
+	line-height: 94px;
+
+	color: #FFFFFF;
+}
