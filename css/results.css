@@ -1,0 +1,96 @@
+html,body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	overflow-x: hidden;
+}
+
+body{
+	background-image: url("../assets/bg.jpeg");
+  	background-repeat: no-repeat;
+	background-size: cover;
+	position: fixed;
+}
+
+h1{
+	margin-top: 4%;
+	color: black;
+	font-family: Kaushan Script;
+	font-size: 4.5rem;
+	text-align: center;
+}
+
+.container {
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 3%;
+	padding-bottom: 2.5%;
+	background-color: rgba(236, 236, 236, 0.5);
+	width: 55%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 80px;
+}
+
+.listitem {
+	height: 100px;
+	background-color: white;
+	margin-bottom: 2%;
+	padding: 2%;
+}
+
+.airlinelogo {
+	height: 70%;
+	float: left;
+}
+
+.flightdetailsbox {
+	margin-left: 10px;
+	margin-top: 10px;
+	float: left;
+	height: 100%;
+}
+
+.airlinename {
+	color: grey;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.flightdetails {
+	font-size: 1.5rem; 
+	margin-top: 3%;
+}
+
+.rightsection {
+	float: right;
+	margin-right: 7%;
+	margin-top: 2%;
+}
+
+.cost {
+	margin:0;
+}
+
+.book {
+	margin-top: 10%;
+	display: inline-block;
+	font-weight: 400;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: #28a745;
+	border-color: #28a745;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: 0.25rem;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
