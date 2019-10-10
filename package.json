@@ -1,0 +1,26 @@
+{
+  "name": "airline-reservation-system",
+  "version": "1.0.0",
+  "description": "DBMS Mini Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AravindhanV/Airline-Reservation-System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AravindhanV/Airline-Reservation-System/issues"
+  },
+  "homepage": "https://github.com/AravindhanV/Airline-Reservation-System#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  }
+}
