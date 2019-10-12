@@ -33,6 +33,32 @@ app.get("/register",function(req,res){
     res.render("register");
 });
 
+app.get('/home',function(req,res){
+    res.render('search');
+});
+
+app.post("/login",function(req,res){
+    var body = req.body;
+    var email = body.email;
+    var pass = body.pass;
+    var getPass = "SELECT password FROM login WHERE email='"+email+"'";
+
+    connection.query(getPass,function(err,result, fields){
+        if(err){
+            console.log(err);
+        }
+        else{
+            var dbpass = result[0].password;
+            if(pass == dbpass){
+                res.redirect('/home');
+            }
+            else{
+                res.redirect('/login');
+            }
+        }
+    });
+});
+
 app.post("/register",function(req,res){
     var body = req.body;
     var email = body.email;
