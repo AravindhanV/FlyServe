@@ -18,33 +18,37 @@
          <div class="Text">
              <p>Flyserve</p>
          </div>
-         <form class="register_form" method="POST" action="/register">
+         <form class="register_form" method="POST" action="/register" onsubmit="return validateForm()">
          <div class="rectangle">
          <h1 class= "Text2">
             Register
         </h1>
         <div class="EmailBoxPosition">
-                <input type="text" id="Email" name="name" placeholder="Name">
+                <input type="text" id="name" name="name" placeholder="Name">
             </div>
          <div class="EmailBoxPosition">
-             <input type="email" id="Email" name="email" placeholder="Email">
+             <input type="email" id="email" name="email" placeholder="Email">
          </div>
          <div class="PasswordBoxPosition">
-             <input type="password" id="Pswd" name="pass" placeholder="Password">
+             <input type="password" id="pass" name="pass" placeholder="Password">
          </div>
          <div class="PasswordBoxPosition">
-                <input type="password" id="Pswd" name="cpass" placeholder="Confirm Password">
+                <input type="password" id="cpass" name="cpass" placeholder="Confirm Password">
             </div>
             <div class="EmailBoxPosition">
-                    <input type="number" min="1" id="Email" name="age" placeholder="Age">
+                    <input type="number" min="1" max="120" id="age" name="age" placeholder="Age">
                 </div>
                 <div class="EmailBoxPosition">
-                        <input type="text" id="Email" name="gender" placeholder="Gender (M/F)">
+                        <input type="radio" id="male" name="gender" value="Male">
+                        <label for="">Male</label>
+                        <label for="huey">Huey</label>
+                        <input type="radio" id="female" name="gender" value="Female">
                     </div>
          <div class="SubmitBoxPosition">
              <input type="submit" class="button" value="Submit">
          </div>
         </div>
         </form>
+        <script src="register.js"></script>
     </body>
 </html>

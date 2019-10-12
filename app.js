@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var mysql  = require('mysql');
 var bodyParser =  require('body-parser');
-var bcrypt = require('bcrypt');
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -13,12 +12,9 @@ var connection = mysql.createConnection({
 
 app.use(express.static("assets"));
 app.use(express.static("css"));
+app.use(express.static("js"));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-
-const saltRounds = 10;
-// const myPlaintextPassword = 's0/\/\P4$$w0rD';
-// const someOtherPlaintextPassword = 'not_bacon';
 
 app.get('/',function(req,res){
     res.render("home");
