@@ -10,6 +10,11 @@ var connection = mysql.createConnection({
     database: 'airline'
 });
 
+connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected to MYSQL!");
+  });
+
 app.use(express.static("assets"));
 app.use(express.static("css"));
 app.use(express.static("js"));
@@ -20,13 +25,31 @@ app.get('/',function(req,res){
     res.render("home");
 });
 
+app.get('/login',function(req,res){
+    res.render("home");
+});
+
 app.get("/register",function(req,res){
     res.render("register");
 });
 
 app.post("/register",function(req,res){
-    console.log(req.body);
-    res.redirect('/register');
+    var body = req.body;
+    var email = body.email;
+    var pass = body.pass;
+    var name = body.name;
+    var age = body.age;
+    var gender = body.gender;
+
+    var sql = "INSERT INTO login VALUES('"+email+"','"+pass+"')";
+    var datasql = "INSERT INTO user VALUES('"+email+"','"+name+"',"+age+",'"+gender+"')";
+    connection.query(sql,function(err,result){
+        connection.query(datasql,function(ierr,iresult){
+            if(ierr) throw ierr;
+            console.log(iresult);
+            res.redirect('/login');
+        });
+    });
 });
 
 app.listen(8080,function(){

@@ -1,5 +1,11 @@
-DROP TABLE IF EXISTS airlines;
-DROP TABLE IF EXISTS login;
+DROP DATABASE IF EXISTS airline;
+CREATE DATABASE airline;
+USE airline;
 
-CREATE TABLE airlines(id varchar(5) primary key, name varchar(30));
-CREATE TABLE login(id varchar(5) primary key, name varchar(30));
+DROP TABLE IF EXISTS login;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE login(email varchar(50) primary key, password varchar(30));
+CREATE TABLE user(email varchar(50) primary key, name varchar(30), age int, gender char(1));
+
+ALTER TABLE user ADD CONSTRAINT FOREIGN KEY(email) REFERENCES login(email);
