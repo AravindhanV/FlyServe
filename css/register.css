@@ -57,7 +57,7 @@ body{
 	height: 42px;
 }
 
-input[type=text], select {
+/* input[type=text], select {
   width: 100%;
   padding: 12px 20px;
   display: inline-block;
@@ -65,9 +65,9 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
   background-color: #E8E8E8;
-}
+} */
 
-input, select {
+.textfield, select {
 	width: 100%;
 	padding: 12px 20px;
 	display: inline-block;
