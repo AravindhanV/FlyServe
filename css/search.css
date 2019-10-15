@@ -1,5 +1,5 @@
 body{
-	background-image: url("../assets/bg.jpeg");
+	background-image: url("bg.jpeg");
   	background-repeat: no-repeat;
 	  background-size: cover;
 }
@@ -41,6 +41,27 @@ body{
 	margin-top: 225px;
 	margin-bottom: auto;
 }
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f6f6f6;
+	min-width: 300px;
+	overflow: auto;
+	border: 1px solid #ddd;
+	z-index: 1;
+  }
+  
+  .dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;}
 
 .rectangle {
 	width: 540px;

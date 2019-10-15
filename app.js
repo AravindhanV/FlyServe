@@ -37,6 +37,11 @@ app.get('/home',function(req,res){
     res.render('search');
 });
 
+app.get('/search',function(req,res){
+    console.log(typeof req.query.date);
+    res.redirect('/home');
+});
+
 app.post("/login",function(req,res){
     var body = req.body;
     var email = body.email;
