@@ -38,7 +38,7 @@ app.get('/home',function(req,res){
 });
 
 app.get('/search',function(req,res){
-    console.log(typeof req.query.date);
+    console.log(req.query);
     res.redirect('/home');
 });
 
