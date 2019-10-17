@@ -5,8 +5,8 @@ var bodyParser =  require('body-parser');
 
 var connection = mysql.createConnection({
     host: 'localhost',
-    user: 'name',
-    password: 'MistakenFoe-6',
+    user: 'dbms',
+    password: 'dbms',
     database: 'airline'
 });
 
@@ -44,12 +44,16 @@ app.get('/search',function(req,res){
     var date = r.date;
     var class_type = r.class;
     var noofppl = r.noofppl;
-    // console.log(class_type);
-    var sql = "select a1.airport_code as from_code,a1.airport_name as from_name,a2.airport_code as to_code,a2.airport_name as to_name,l.airline_name,f.flight_no,f.depature_time,f.arrival_time from airports as a1, airports as a2, airlines as l, flights as f,cost as c where l.airline_id=f.airline_id and f.from_airport_code=a1.airport_code and f.to_airport_code=a2.airport_code c.airline_id = l.airline_id and from_airport_code='"+ from+"' and to_airport_code = '"+to+"' and DATE(departure_time)='"+date+"' and f.seats_left_"+class_type+">="+noofppl;
+    var sql = "select a1.airport_code as from_code,a1.airport_name as from_name,a2.airport_code as to_code,a2.airport_name as to_name,l.airline_name,f.flight_no,f.departure_time,f.arrival_time from airports as a1, airports as a2, airlines as l, flights as f,costs as c where l.airline_id=f.airline_id and f.from_airport_code=a1.airport_code and f.to_airport_code=a2.airport_code and c.airline_id = l.airline_id and from_airport_code='"+from+"' and to_airport_code = '"+to+"' and DATE(departure_time)='"+date+"' and f.seats_left_"+class_type+">0";
+    console.log(sql);
     connection.query(sql,function(err,result){
-        console.log(result);
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("results",{flights: result});
+        }
     });
-    res.redirect('/home');
 });
 
 app.post("/login",function(req,res){

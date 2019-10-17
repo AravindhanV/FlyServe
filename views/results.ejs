@@ -3,25 +3,29 @@
     <head>
         <title>Search Results</title>
         <link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
-        <link rel= "stylesheet" type="text/css" href= "./css/results.css">
+        <link rel= "stylesheet" type="text/css" href= "results.css">
     </head>
     <body>
             <h1>Flight Results</h1>
-        <div class="container">
-            <div class="listitem">
-                <img class="airlinelogo" src="./assets/jet.jpg">
-                <div class="flightdetailsbox">
-                    <h4 class="airlinename">Jet Airways</h4>
-                    <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
-                </div>  
-                <div class="rightsection">
-                        <h3 class="cost">₹ 10000</h3>
-                        <button class="book">Book Now</button>
-                </div>
-            </div>
+            <!-- <%if(flights.length==0) %> -->
+            <%flights.forEach(function(f){ %>
+                <div class="container">
+                    <div class="listitem">
+                        <img class="airlinelogo" src="jet.jpg">
+                        <div class="flightdetailsbox">
+                            <h4 class="airlinename">Jet Airways</h4>
+                            <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from"><%= f.to_code %></span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
+                        </div>  
+                        <div class="rightsection">
+                                <h3 class="cost">₹ 10000</h3>
+                                <button class="book">Book Now</button>
+                        </div>
+                    </div>
+           <% }); %>
+        
 
             <div class="listitem">
-                    <img class="airlinelogo" src="./assets/jet.jpg">
+                    <img class="airlinelogo" src="jet.jpg">
                     <div class="flightdetailsbox">
                         <h4 class="airlinename">Jet Airways</h4>
                         <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
@@ -32,7 +36,7 @@
                     </div>
                 </div>
                 <div class="listitem">
-                        <img class="airlinelogo" src="./assets/jet.jpg">
+                        <img class="airlinelogo" src="jet.jpg">
                         <div class="flightdetailsbox">
                             <h4 class="airlinename">Jet Airways</h4>
                             <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
@@ -43,7 +47,7 @@
                         </div>
                     </div>
                     <div class="listitem">
-                            <img class="airlinelogo" src="./assets/jet.jpg">
+                            <img class="airlinelogo" src="jet.jpg">
                             <div class="flightdetailsbox">
                                 <h4 class="airlinename">Jet Airways</h4>
                                 <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
@@ -54,7 +58,7 @@
                             </div>
                         </div>
                         <div class="listitem">
-                                <img class="airlinelogo" src="./assets/jet.jpg">
+                                <img class="airlinelogo" src="jet.jpg">
                                 <div class="flightdetailsbox">
                                     <h4 class="airlinename">Jet Airways</h4>
                                     <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
