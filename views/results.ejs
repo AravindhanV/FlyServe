@@ -1,73 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Search Results</title>
-        <link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
-        <link rel= "stylesheet" type="text/css" href= "results.css">
-    </head>
-    <body>
-            <h1>Flight Results</h1>
-            <!-- <%if(flights.length==0) %> -->
-            <%flights.forEach(function(f){ %>
-                <div class="container">
-                    <div class="listitem">
-                        <img class="airlinelogo" src="jet.jpg">
-                        <div class="flightdetailsbox">
-                            <h4 class="airlinename">Jet Airways</h4>
-                            <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from"><%= f.to_code %></span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
-                        </div>  
-                        <div class="rightsection">
-                                <h3 class="cost">₹ 10000</h3>
-                                <button class="book">Book Now</button>
-                        </div>
-                    </div>
-           <% }); %>
-        
 
-            <div class="listitem">
-                    <img class="airlinelogo" src="jet.jpg">
-                    <div class="flightdetailsbox">
-                        <h4 class="airlinename">Jet Airways</h4>
-                        <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
-                    </div>  
-                    <div class="rightsection">
-                            <h3 class="cost">₹ 10000</h3>
-                            <button class="book">Book Now</button>
-                    </div>
-                </div>
-                <div class="listitem">
-                        <img class="airlinelogo" src="jet.jpg">
-                        <div class="flightdetailsbox">
-                            <h4 class="airlinename">Jet Airways</h4>
-                            <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
-                        </div>  
-                        <div class="rightsection">
-                                <h3 class="cost">₹ 10000</h3>
-                                <button class="book">Book Now</button>
-                        </div>
-                    </div>
-                    <div class="listitem">
-                            <img class="airlinelogo" src="jet.jpg">
-                            <div class="flightdetailsbox">
-                                <h4 class="airlinename">Jet Airways</h4>
-                                <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
-                            </div>  
-                            <div class="rightsection">
-                                    <h3 class="cost">₹ 10000</h3>
-                                    <button class="book">Book Now</button>
-                            </div>
-                        </div>
-                        <div class="listitem">
-                                <img class="airlinelogo" src="jet.jpg">
-                                <div class="flightdetailsbox">
-                                    <h4 class="airlinename">Jet Airways</h4>
-                                    <p class="flightdetails"><span id="fromtime"><b>18:00</b> </span><span id="from">BLR</span> <b style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b>21:00</b> <span id="to">TTY</span></p>
-                                </div>  
-                                <div class="rightsection">
-                                        <h3 class="cost">₹ 10000</h3>
-                                        <button class="book">Book Now</button>
-                                </div>
-                            </div>
+<head>
+    <title>Search Results</title>
+    <link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="results.css">
+</head>
+
+<body>
+    <h1>Flight Results</h1>
+    <div class="container">
+        <% flights.forEach(function(f){ %>
+        <div class="listitem">
+            <img class="airlinelogo" src="<%= f.logo %>">
+            <div class="flightdetailsbox">
+                <h4 class="airlinename"><%= f.airline_name %></h4>
+                <p class="flightdetails"><span id="fromtime"><b><%= f.departure_time.substring(0,5) %></b> </span><span id="from"><%= f.from_code %></span> <b
+                        style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b><%= f.arrival_time.substring(0,5) %></b> <span id="to"><%= f.to_code %></span>
+                </p>
+            </div>
+            <div class="rightsection">
+                <h3 class="cost">₹ <%= f.price %></h3>
+                <button class="book">Book Now</button>
+            </div>
         </div>
-    </body>
+        <% }); %>
+    </div>
+</body>
+
 </html>
