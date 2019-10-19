@@ -65,6 +65,10 @@ app.get('/flights',function(req,res){
     res.render("results",{flights: flights});
 });
 
+app.get('/book/:flight_id',function(req,res){
+    res.send("You have Booked "+req.params.flight_id);
+});
+
 app.post("/login",function(req,res){
     var body = req.body;
     var email = body.email;
@@ -78,6 +82,7 @@ app.post("/login",function(req,res){
         else{
             var dbpass = result[0].password;
             if(pass == dbpass){
+                
                 res.redirect('/home');
             }
             else{

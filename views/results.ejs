@@ -14,14 +14,14 @@
         <div class="listitem">
             <img class="airlinelogo" src="<%= f.logo %>">
             <div class="flightdetailsbox">
-                <h4 class="airlinename"><%= f.airline_name %></h4>
+                <h4 class="airlinename"><%= f.airline_name + " - " + f.flight_no%></h4>
                 <p class="flightdetails"><span id="fromtime"><b><%= f.departure_time.substring(0,5) %></b> </span><span id="from"><%= f.from_code %></span> <b
                         style="font-size: 1.7rem">&#8658</b> <span id="fromtime"><b><%= f.arrival_time.substring(0,5) %></b> <span id="to"><%= f.to_code %></span>
                 </p>
             </div>
             <div class="rightsection">
                 <h3 class="cost">₹ <%= f.price %></h3>
-                <button class="book">Book Now</button>
+                <button class="book"><a href="/book/<%= f.flight_no %>" class="booktext">Book Now</a></button></a>
             </div>
         </div>
         <% }); %>

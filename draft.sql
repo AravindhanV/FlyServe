@@ -31,8 +31,10 @@ INSERT INTO airports values("MAA","Chennai International Airport","India");
 INSERT INTO airports values("BOM","Chhatrapati Shivaji International Airport","India");
 INSERT INTO airlines values("AIR001","Jet Airways","https://pbs.twimg.com/profile_images/876775499799736321/1nFK_O5O_400x400.jpg");
 INSERT INTO airlines values("AIR002","SpiceJet","https://i.pinimg.com/originals/9f/41/91/9f4191ace7a83b42d468322d5668fefb.png");
-INSERT INTO flights values("JA1234","BLR","MAA","AIR002","2019-10-21 06:00:00","2019-10-21 08:00:00",50,20);
-INSERT INTO flights values("SJ1234","BLR","BOM","AIR001","2019-10-23 10:00:00","2019-10-23 16:00:00",100,250);
+INSERT INTO flights values("JA1234","BLR","MAA","AIR001","2019-10-21 06:00:00","2019-10-21 08:00:00",50,20);
+INSERT INTO flights values("SJ3021","BLR","MAA","AIR002","2019-10-21 06:00:00","2019-10-21 08:00:00",50,20);
+INSERT INTO flights values("JA1111","BLR","MAA","AIR001","2019-10-22 06:00:00","2019-10-22 08:00:00",50,20);
+INSERT INTO flights values("SJ1234","BLR","BOM","AIR002","2019-10-23 10:00:00","2019-10-23 16:00:00",100,250);
 INSERT INTO costs values("AIR001", 4500, 9000);
 INSERT INTO costs values("AIR002", 3000, 6000);
 
