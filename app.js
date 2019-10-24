@@ -42,7 +42,7 @@ app.get("/home", function(req, res) {
 });
 
 app.get("/search", function(req, res) {
-  var r = req.query;
+  var r = req.session.search = req.query;
   var from = r.from;
   var to = r.to;
   var date = r.date;
@@ -77,23 +77,25 @@ app.get("/search", function(req, res) {
 
 app.get("/flights", function(req, res) {
   var flights = req.session.message;
-  console.log(flights);
+  // console.log(flights);
   res.render("results", { flights: flights });
 });
 
 app.get("/test", function(req, res) {
   // var bookingsql = "INSERT INTO bookings( customer_email,no_of_seats,flight_no, booking_date ) values('" +customer_email +"' , '" + no_of_seats +"' , '" + flight_no +"' , '"+ booking_date + "')";
-  var bookingsql = "INSERT INTO bookings(customer_email,no_of_seats,flight_no, booking_date ) values('varavindhan2010@gmail.com' , '5' , 'SJ1234' , '2019-10-15')";
-  connection.query(bookingsql,function(err,result){
-    console.log(err);
-    console.log(result);
-  });
+  // var bookingsql = "INSERT INTO bookings(customer_email,no_of_seats,flight_no, booking_date ) values('varavindhan2010@gmail.com' , '5' , 'SJ1234' , '2019-10-15')";
+  // connection.query(bookingsql,function(err,result){
+  //   console.log(err);
+  //   console.log(result);
+  // });
+  console.log(req.session.search);
   res.render("passenger");
 });
 
 app.get("/book/:flight_id", function(req, res) {
   req.session.fid = req.params.flight_id;
   req.session.f = 1;
+  req.session.passengers = [];
   res.redirect("/passenger");
 });
 
@@ -103,12 +105,35 @@ app.get("/passenger",function(req,res){
   if (f <= n) {
     res.render("passenger",{n:f});
   } else {
-    res.send("You have Booked " + req.params.flight_id);
+    res.redirect("/confirmbooking");
   }
+});
+
+app.get("/confirmbooking",function(req,res){
+  var id;
+  var search = req.session.search;
+  var d = new Date();
+  var date = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+  var bookingsql = "INSERT INTO bookings(customer_email,no_of_seats,flight_no,booking_date) values ('" +req.session.email +"' , '" + search.noofppl +"' , '" + req.session.fid +"' , '"+ date + "')";
+  connection.query(bookingsql,function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      id = result.insertId;
+
+      req.session.passengers.forEach(function(p){
+        var ip = "INSERT INTO passenger values("+id+",'"+p.name+"','"+p.gender+"',"+p.age+")";
+        connection.query(ip);
+      });
+      res.send("Booking Confirmed");
+    }
+  });
 });
 
 app.post("/passenger",function(req,res){
   req.session.f++;
+  req.session.passengers.push(req.body);
   res.redirect('/passenger');
 });
 
@@ -116,6 +141,7 @@ app.post("/login", function(req, res) {
   var body = req.body;
   var email = body.email;
   var pass = body.pass;
+  req.session.email = email;
   var getPass = "SELECT password FROM login WHERE email='" + email + "'";
 
   connection.query(getPass, function(err, result, fields) {
@@ -161,5 +187,5 @@ app.post("/register", function(req, res) {
 });
 
 app.listen(8080,function(){
-    console.log("Server has started");
+    console.log("Server has started at http://localhost:8080");
 });
