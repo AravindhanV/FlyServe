@@ -82,13 +82,25 @@ app.get("/flights", function(req, res) {
 });
 
 app.get("/test", function(req, res) {
+  // var bookingsql = "INSERT INTO bookings( customer_email,no_of_seats,flight_no, booking_date ) values('" +customer_email +"' , '" + no_of_seats +"' , '" + flight_no +"' , '"+ booking_date + "')";
+  var bookingsql = "INSERT INTO bookings(customer_email,no_of_seats,flight_no, booking_date ) values('varavindhan2010@gmail.com' , '5' , 'SJ1234' , '2019-10-15')";
+  connection.query(bookingsql,function(err,result){
+    console.log(err);
+    console.log(result);
+  });
   res.render("passenger");
 });
 
 app.get("/book/:flight_id", function(req, res) {
-  var n = req.session.noofppl;
+  req.session.fid = req.params.flight_id;
   req.session.f = 1;
-  if (f > n) {
+  res.redirect("/passenger");
+});
+
+app.get("/passenger",function(req,res){
+  var n = req.session.noofppl;
+  var f = req.session.f;
+  if (f <= n) {
     res.render("passenger",{n:f});
   } else {
     res.send("You have Booked " + req.params.flight_id);
@@ -96,7 +108,8 @@ app.get("/book/:flight_id", function(req, res) {
 });
 
 app.post("/passenger",function(req,res){
-	
+  req.session.f++;
+  res.redirect('/passenger');
 });
 
 app.post("/login", function(req, res) {
@@ -150,6 +163,3 @@ app.post("/register", function(req, res) {
 app.listen(8080,function(){
     console.log("Server has started");
 });
-
-
-var bookingsql = "INSERT INTO bookings( customer_email,no_of_seats,flight_no, booking_date ) values('" +customer_email +"' , '" + no_of_seats +"' , '" + flight_no +"' , '"+ booking_date + "')";
