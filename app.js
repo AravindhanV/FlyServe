@@ -114,3 +114,6 @@ app.post("/register",function(req,res){
 app.listen(8080,function(){
     console.log("Server has started");
 });
+
+
+var bookingsql = "INSERT INTO bookings( customer_email,no_of_seats,flight_no, booking_date ) values('" +customer_email +"' , '" + no_of_seats +"' , '" + flight_no +"' , '"+ booking_date + "')";

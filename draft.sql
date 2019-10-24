@@ -16,7 +16,8 @@ CREATE TABLE airlines(airline_id varchar(10) primary key, airline_name varchar(2
 CREATE TABLE airports(airport_code varchar(25) primary key,airport_name varchar(50), country varchar(25));
 CREATE TABLE flights(flight_no varchar(25) primary key, from_airport_code varchar(25), to_airport_code varchar(25), airline_id varchar(25), departure_time datetime, arrival_time datetime, seats_left_economy int(5), seats_left_business int(5));
 CREATE TABLE costs(airline_id varchar(25), economy int(11), business int(11));
-CREATE TABLE bookings(booking_id varchar(25), customer_email varchar(50), customer_name varchar(25), flight_no varchar(25), booking_date date, primary key(booking_id,customer_name));
+CREATE TABLE bookings(booking_id varchar(25) auto_increment, customer_email varchar(50),no_of_seats int(11), flight_no varchar(25), booking_date date, primary key(booking_id));
+CREATE TABLE passenger(booking_id varchar(25), customer_name varchar(25), gender char(1),age int(11));
 
 ALTER TABLE user ADD CONSTRAINT FOREIGN KEY(email) REFERENCES login(email) on delete cascade;
 ALTER TABLE flights ADD CONSTRAINT FOREIGN KEY(from_airport_code) REFERENCES airports(airport_code) on delete cascade;
@@ -25,6 +26,7 @@ ALTER TABLE flights ADD CONSTRAINT FOREIGN KEY(airline_id) REFERENCES airlines(a
 ALTER TABLE costs ADD CONSTRAINT FOREIGN KEY(airline_id) REFERENCES airlines(airline_id) on delete cascade;
 ALTER TABLE bookings ADD CONSTRAINT FOREIGN KEY(customer_email) REFERENCES login(email) on delete cascade;
 ALTER TABLE bookings ADD CONSTRAINT FOREIGN KEY(flight_no) REFERENCES flights(flight_no) on delete cascade;
+ALTER TABLE passenger ADD CONSTRAINT FOREIGN KEY(booking_id) REFERENCES bookings(booking_id) on delete cascade;
 
 INSERT INTO airports values("BLR","Bengaluru International Airport","India");
 INSERT INTO airports values("MAA","Chennai International Airport","India");
@@ -37,7 +39,11 @@ INSERT INTO flights values("JA1111","BLR","MAA","AIR001","2019-10-22 06:00:00","
 INSERT INTO flights values("SJ1234","BLR","BOM","AIR002","2019-10-23 10:00:00","2019-10-23 16:00:00",100,250);
 INSERT INTO costs values("AIR001", 4500, 9000);
 INSERT INTO costs values("AIR002", 3000, 6000);
-
+-- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"JA1234","2019-10-14 07:00:00");
+-- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"SJ3021","2019-10-14 07:00:00");
+-- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"JA1111","2019-10-14 07:00:00");
+-- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"SJ1234","2019-10-14 07:00:00");
+-- INSERT INTO passenger values("0","Atul K", "M", 20);
 COMMIT;
 
 -- Comment All after this
