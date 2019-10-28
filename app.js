@@ -6,8 +6,8 @@ var session = require("express-session");
 
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "dbms",
-  password: "dbms",
+  user: "name",
+  password: "MistakenFoe-6",
   database: "airline"
 });
 
@@ -88,8 +88,17 @@ app.get("/test", function(req, res) {
   //   console.log(err);
   //   console.log(result);
   // });
-  console.log(req.session.search);
-  res.render("passenger");
+  // console.log(req.session.search);
+  var sql = "CALL checkRepeated()";
+  connection.query(sql,function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(result);
+    }
+  });
+  res.send("Hello World!");
 });
 
 app.get("/book/:flight_id", function(req, res) {
@@ -124,6 +133,7 @@ app.get("/confirmbooking",function(req,res){
 
       req.session.passengers.forEach(function(p){
         var ip = "INSERT INTO passenger values("+id+",'"+p.name+"','"+p.gender+"',"+p.age+")";
+        console.log(ip);
         connection.query(ip);
       });
       res.send("Booking Confirmed");
@@ -176,7 +186,7 @@ app.post("/register", function(req, res) {
     age +
     ",'" +
     gender +
-    "')";
+    "',0)";
   connection.query(sql, function(err, result) {
     connection.query(datasql, function(ierr, iresult) {
       if (ierr) throw ierr;

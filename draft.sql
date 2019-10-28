@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS costs;
 DROP TABLE IF EXISTS bookings;
 
 CREATE TABLE login(email varchar(50) primary key, password varchar(30));
-CREATE TABLE user(email varchar(50) primary key, name varchar(30), age int, gender char(1));
+CREATE TABLE user(email varchar(50) primary key, name varchar(30), age int, gender char(1), points int(5));
 CREATE TABLE airlines(airline_id varchar(10) primary key, airline_name varchar(25), logo varchar(100));
 CREATE TABLE airports(airport_code varchar(25) primary key,airport_name varchar(50), country varchar(25));
 CREATE TABLE flights(flight_no varchar(25) primary key, from_airport_code varchar(25), to_airport_code varchar(25), airline_id varchar(25), departure_time datetime, arrival_time datetime, seats_left_economy int(5), seats_left_business int(5));
@@ -45,6 +45,15 @@ INSERT INTO costs values("AIR002", 3000, 6000);
 -- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"SJ1234","2019-10-14 07:00:00");
 -- INSERT INTO passenger values("0","Atul K", "M", 20);
 COMMIT;
+
+DELIMITER $$
+CREATE PROCEDURE checkRepeated ()
+BEGIN 
+select * from costs;
+-- UPDATE passenger set repeated = 1 where (SELECT count(name) from passenger order by name) = 1;
+-- UPDATE passenger set repeated = 0 where (SELECT count(name) from passenger order by name) > 1;
+END $$  
+
 
 -- Comment All after this
 -- select l.logo,6*c.business as price,a1.airport_code as from_code,a1.airport_name as from_name,a2.airport_code as to_code,a2.airport_name as to_name,l.airline_name,f.flight_no,TIME(f.departure_time) as departure_time,TIME(f.arrival_time) as arrival_time from airports as a1, airports as a2, airlines as l, flights as f,costs as c where l.airline_id=f.airline_id and f.from_airport_code=a1.airport_code and f.to_airport_code=a2.airport_code and c.airline_id = l.airline_id and from_airport_code='BLR' and to_airport_code = 'MAA' and DATE(departure_time)='2019-10-21' and f.seats_left_business>=5;
