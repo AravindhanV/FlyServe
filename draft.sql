@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS costs;
 DROP TABLE IF EXISTS bookings;
 
 CREATE TABLE login(email varchar(50) primary key, password varchar(30));
-CREATE TABLE user(email varchar(50) primary key, name varchar(30), age int, gender char(1), points int(5));
+CREATE TABLE user(email varchar(50) primary key, name varchar(30), age int, gender char(1));
 CREATE TABLE airlines(airline_id varchar(10) primary key, airline_name varchar(25), logo varchar(100));
 CREATE TABLE airports(airport_code varchar(25) primary key,airport_name varchar(50), country varchar(25));
 CREATE TABLE flights(flight_no varchar(25) primary key, from_airport_code varchar(25), to_airport_code varchar(25), airline_id varchar(25), departure_time datetime, arrival_time datetime, seats_left_economy int(5), seats_left_business int(5));
@@ -44,15 +44,17 @@ INSERT INTO costs values("AIR002", 3000, 6000);
 -- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"JA1111","2019-10-14 07:00:00");
 -- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"SJ1234","2019-10-14 07:00:00");
 -- INSERT INTO passenger values("0","Atul K", "M", 20);
-COMMIT;
 
-DELIMITER $$
-CREATE PROCEDURE checkRepeated ()
-BEGIN 
-select * from costs;
--- UPDATE passenger set repeated = 1 where (SELECT count(name) from passenger order by name) = 1;
--- UPDATE passenger set repeated = 0 where (SELECT count(name) from passenger order by name) > 1;
-END $$  
+DELIMITER //
+CREATE PROCEDURE checkbookings(in name varchar(40))
+BEGIN
+select count(*) as len from passenger where customer_name=name;
+END // 
+DELIMITER ;
+
+-- CREATE TRIGGER bookdup before insert on passenger for each row exec checkbookings;
+
+COMMIT;
 
 
 -- Comment All after this

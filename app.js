@@ -49,7 +49,7 @@ app.get("/home", function(req, res) {
 });
 
 app.get("/search", function(req, res) {
-  var r = req.session.search = req.query;
+  var r = (req.session.search = req.query);
   var from = r.from;
   var to = r.to;
   var date = r.date;
@@ -96,13 +96,12 @@ app.get("/test", function(req, res) {
   //   console.log(result);
   // });
   // console.log(req.session.search);
-  var sql = "CALL checkRepeated()";
-  connection.query(sql,function(err,result){
-    if(err){
+  var sql = "CALL checkbookings('Aravindh')";
+  connection.query(sql, function(err, result) {
+    if (err) {
       console.log(err);
-    }
-    else{
-      console.log(result);
+    } else {
+      console.log(result[0][0].len);
     }
   });
   res.send("Hello World!");
@@ -115,43 +114,75 @@ app.get("/book/:flight_id", function(req, res) {
   res.redirect("/passenger");
 });
 
-app.get("/passenger",function(req,res){
+app.get("/passenger", function(req, res) {
   var n = req.session.noofppl;
   var f = req.session.f;
   if (f <= n) {
-    res.render("passenger",{n:f});
+    res.render("passenger", { n: f });
   } else {
     res.redirect("/confirmbooking");
   }
 });
 
-app.get("/confirmbooking",function(req,res){
+app.get("/confirmbooking", function(req, res) {
   var id;
+  var conflicts = 0;
   var search = req.session.search;
   var d = new Date();
-  var date = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-  var bookingsql = "INSERT INTO bookings(customer_email,no_of_seats,flight_no,booking_date) values ('" +req.session.email +"' , '" + search.noofppl +"' , '" + req.session.fid +"' , '"+ date + "')";
-  connection.query(bookingsql,function(err,result){
-    if(err){
+  var date = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+  var bookingsql =
+    "INSERT INTO bookings(customer_email,no_of_seats,flight_no,booking_date) values ('" +
+    req.session.email +
+    "' , '" +
+    search.noofppl +
+    "' , '" +
+    req.session.fid +
+    "' , '" +
+    date +
+    "')";
+  connection.query(bookingsql, function(err, result) {
+    if (err) {
       console.log(err);
-    }
-    else{
+    } else {
       id = result.insertId;
-
-      req.session.passengers.forEach(function(p){
-        var ip = "INSERT INTO passenger values("+id+",'"+p.name+"','"+p.gender+"',"+p.age+")";
-        console.log(ip);
-        connection.query(ip);
+      ps = [];
+      req.session.passengers.forEach(async function(p) {
+        var checksql = "CALL checkbookings('" + p.name + "')";
+        await connection.query(checksql, function(err, flagres) {
+          if (err) {
+            console.log(err);
+          } else {
+            var flag = flagres[0][0].len;
+            console.log(flag);
+            if (flag == 0) {
+              var ip =
+                "INSERT INTO passenger values(" +
+                id +
+                ",'" +
+                p.name +
+                "','" +
+                p.gender +
+                "'," +
+                p.age +
+                ")";
+              console.log(ip);
+              connection.query(ip);
+            } else {
+              conflicts++;
+            }
+          }
+        });
       });
       res.send("Booking Confirmed");
+      // res.send("Booking Confirmed with " + conflicts + " conflicts");
     }
   });
 });
 
-app.post("/passenger",function(req,res){
+app.post("/passenger", function(req, res) {
   req.session.f++;
   req.session.passengers.push(req.body);
-  res.redirect('/passenger');
+  res.redirect("/passenger");
 });
 
 app.post("/login", function(req, res) {
@@ -193,7 +224,7 @@ app.post("/register", function(req, res) {
     age +
     ",'" +
     gender +
-    "',0)";
+    "')";
   connection.query(sql, function(err, result) {
     connection.query(datasql, function(ierr, iresult) {
       if (ierr) throw ierr;
@@ -203,6 +234,8 @@ app.post("/register", function(req, res) {
   });
 });
 
-app.listen(8080,function(){
-    console.log("Server has started at http://localhost:8080");
+app.listen(8080, function() {
+  console.log("Server has started at http://localhost:8080");
 });
+
+async function checkBookings(p) {}
