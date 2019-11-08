@@ -4,19 +4,19 @@ var mysql = require("mysql");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "name",
-//   password: "MistakenFoe-6",
-//   database: "airline"
-// });
-
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "dbms",
-  password: "dbms",
+  user: "name",
+  password: "MistakenFoe-6",
   database: "airline"
 });
+
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "dbms",
+//   password: "dbms",
+//   database: "airline"
+// });
 
 connection.connect(function(err) {
   if (err) throw err;
@@ -126,12 +126,11 @@ app.get("/passenger", function(req, res) {
 
 app.get("/confirmbooking", function(req, res) {
   var id;
-  var conflicts = 0;
   var search = req.session.search;
   var d = new Date();
   var date = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
   var bookingsql =
-    "INSERT INTO bookings(customer_email,no_of_seats,flight_no,booking_date) values ('" +
+    "INSERT INTO bookings(customer_email,no_of_seats,flight_no,booking_date,class_type) values ('" +
     req.session.email +
     "' , '" +
     search.noofppl +
@@ -139,6 +138,8 @@ app.get("/confirmbooking", function(req, res) {
     req.session.fid +
     "' , '" +
     date +
+    "', '" +
+    search.class + 
     "')";
   connection.query(bookingsql, function(err, result) {
     if (err) {
@@ -167,9 +168,7 @@ app.get("/confirmbooking", function(req, res) {
                 ")";
               console.log(ip);
               connection.query(ip);
-            } else {
-              conflicts++;
-            }
+            } 
           }
         });
       });

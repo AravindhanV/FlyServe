@@ -16,7 +16,7 @@ CREATE TABLE airlines(airline_id varchar(10) primary key, airline_name varchar(2
 CREATE TABLE airports(airport_code varchar(25) primary key,airport_name varchar(50), country varchar(25));
 CREATE TABLE flights(flight_no varchar(25) primary key, from_airport_code varchar(25), to_airport_code varchar(25), airline_id varchar(25), departure_time datetime, arrival_time datetime, seats_left_economy int(5), seats_left_business int(5));
 CREATE TABLE costs(airline_id varchar(25), economy int(11), business int(11));
-CREATE TABLE bookings(booking_id int(25) auto_increment, customer_email varchar(50),no_of_seats int(11), flight_no varchar(25), booking_date date, primary key(booking_id));
+CREATE TABLE bookings(booking_id int(25) auto_increment, customer_email varchar(50),no_of_seats int(11), flight_no varchar(25), booking_date date , class_type varchar(25), primary key(booking_id));
 CREATE TABLE passenger(booking_id int(25), customer_name varchar(25), gender char(1),age int(11));
 
 ALTER TABLE user ADD CONSTRAINT FOREIGN KEY(email) REFERENCES login(email) on delete cascade;
@@ -52,7 +52,22 @@ select count(*) as len from passenger where customer_name=name;
 END // 
 DELIMITER ;
 
--- CREATE TRIGGER bookdup before insert on passenger for each row exec checkbookings;
+DELIMITER $$
+
+CREATE TRIGGER bookdup before insert on passenger for each row 
+BEGIN
+DECLARE type_of_seat varchar(25);
+select class_type into type_of_seat from bookings,passenger where passenger.booking_id = bookings.booking_id;
+
+IF type_of_seat = 'business' THEN
+UPDATE flights,bookings set seats_left_business = seats_left_business - 1 where new.booking_id = bookings.booking_id and bookings.flight_no = flights.flight_no;
+ELSE
+UPDATE flights,bookings set seats_left_economy = seats_left_economy - 1 where new.booking_id = bookings.booking_id and bookings.flight_no = flights.flight_no;
+END IF;
+
+END $$
+
+DELIMITER ;
 
 COMMIT;
 
