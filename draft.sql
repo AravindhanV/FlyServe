@@ -54,15 +54,15 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE TRIGGER bookdup before insert on passenger for each row 
+CREATE TRIGGER bookdup after insert on bookings for each row 
 BEGIN
 DECLARE type_of_seat varchar(25);
-select class_type into type_of_seat from bookings,passenger where passenger.booking_id = bookings.booking_id;
+select class_type into type_of_seat from bookings;
 
 IF type_of_seat = 'business' THEN
-UPDATE flights,bookings set seats_left_business = seats_left_business - 1 where new.booking_id = bookings.booking_id and bookings.flight_no = flights.flight_no;
+UPDATE flights,bookings set seats_left_business = seats_left_business - new.no_of_seats where new.flight_no = flights.flight_no;
 ELSE
-UPDATE flights,bookings set seats_left_economy = seats_left_economy - 1 where new.booking_id = bookings.booking_id and bookings.flight_no = flights.flight_no;
+UPDATE flights,bookings set seats_left_economy = seats_left_economy - new.no_of_seats where new.flight_no = flights.flight_no;
 END IF;
 
 END $$
