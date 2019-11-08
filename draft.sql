@@ -28,6 +28,8 @@ ALTER TABLE bookings ADD CONSTRAINT FOREIGN KEY(customer_email) REFERENCES login
 ALTER TABLE bookings ADD CONSTRAINT FOREIGN KEY(flight_no) REFERENCES flights(flight_no) on delete cascade;
 ALTER TABLE passenger ADD CONSTRAINT FOREIGN KEY(booking_id) REFERENCES bookings(booking_id) on delete cascade;
 
+-- INSERT INTO login values("atulkuchil@gmail.com", "aa");
+-- INSERT INTO user values("atulkuchil@gmail.com","Atul",20,"M");
 INSERT INTO airports values("BLR","Bengaluru International Airport","India");
 INSERT INTO airports values("MAA","Chennai International Airport","India");
 INSERT INTO airports values("BOM","Chhatrapati Shivaji International Airport","India");
@@ -39,11 +41,11 @@ INSERT INTO flights values("JA1111","BLR","MAA","AIR001","2019-10-22 06:00:00","
 INSERT INTO flights values("SJ1234","BLR","BOM","AIR002","2019-10-23 10:00:00","2019-10-23 16:00:00",100,250);
 INSERT INTO costs values("AIR001", 4500, 9000);
 INSERT INTO costs values("AIR002", 3000, 6000);
--- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"JA1234","2019-10-14 07:00:00");
+-- INSERT INTO bookings values(0,"atulkuchil@gmail.com",1,"JA1234","2019-10-14 07:00:00","business");
 -- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"SJ3021","2019-10-14 07:00:00");
 -- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"JA1111","2019-10-14 07:00:00");
 -- INSERT INTO bookings values("0","atulkuchil@gmail.com",1,"SJ1234","2019-10-14 07:00:00");
--- INSERT INTO passenger values("0","Atul K", "M", 20);
+-- INSERT INTO passenger values(0,"Atul K", "M", 20);
 
 DELIMITER //
 CREATE PROCEDURE checkbookings(in name varchar(40))
@@ -57,12 +59,14 @@ DELIMITER $$
 CREATE TRIGGER bookdup after insert on bookings for each row 
 BEGIN
 DECLARE type_of_seat varchar(25);
-select class_type into type_of_seat from bookings;
+DECLARE nos int(11);
+select class_type into type_of_seat from bookings order by booking_id DESC LIMIT 1;
+select no_of_seats into nos from bookings order by booking_id DESC LIMIT 1;
 
 IF type_of_seat = 'business' THEN
-UPDATE flights,bookings set seats_left_business = seats_left_business - new.no_of_seats where new.flight_no = flights.flight_no;
+UPDATE flights,bookings set seats_left_business = seats_left_business - nos where bookings.flight_no = flights.flight_no;
 ELSE
-UPDATE flights,bookings set seats_left_economy = seats_left_economy - new.no_of_seats where new.flight_no = flights.flight_no;
+UPDATE flights,bookings set seats_left_economy = seats_left_economy - nos where bookings.flight_no = flights.flight_no;
 END IF;
 
 END $$
