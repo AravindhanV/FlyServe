@@ -60,13 +60,15 @@ CREATE TRIGGER bookdup after insert on bookings for each row
 BEGIN
 DECLARE type_of_seat varchar(25);
 DECLARE nos int(11);
+DECLARE bk_id int(11);
 select class_type into type_of_seat from bookings order by booking_id DESC LIMIT 1;
 select no_of_seats into nos from bookings order by booking_id DESC LIMIT 1;
+select booking_id into bk_id from bookings order by booking_id DESC LIMIT 1;
 
 IF type_of_seat = 'business' THEN
-UPDATE flights,bookings set seats_left_business = seats_left_business - nos where bookings.flight_no = flights.flight_no;
+UPDATE flights,bookings set seats_left_business = seats_left_business - nos where bookings.flight_no = flights.flight_no and bookings.booking_id = bk_id;
 ELSE
-UPDATE flights,bookings set seats_left_economy = seats_left_economy - nos where bookings.flight_no = flights.flight_no;
+UPDATE flights,bookings set seats_left_economy = seats_left_economy - nos where bookings.flight_no = flights.flight_no and bookings.booking_id = bk_id;
 END IF;
 
 END $$
