@@ -208,7 +208,7 @@ app.post("/login", function(req, res) {
       else{
         var dbpass = result[0].password;
         if (pass == dbpass) {
-          res.session.email=email;
+          req.session.email=email;
           res.redirect("/home");
         } else {
           res.redirect("/login");
