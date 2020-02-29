@@ -4,19 +4,19 @@ var mysql = require("mysql");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "name",
-  password: "MistakenFoe-6",
-  database: "airline"
-});
-
 // var connection = mysql.createConnection({
 //   host: "localhost",
-//   user: "dbms",
-//   password: "dbms",
+//   user: "name",
+//   password: "MistakenFoe-6",
 //   database: "airline"
 // });
+
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "dbms",
+  password: "dbms",
+  database: "airline"
+});
 
 connection.connect(function(err) {
   if (err) throw err;
@@ -33,11 +33,19 @@ app.use(
 );
 
 app.get("/", function(req, res) {
-  res.render("home");
+  if (req.session.email) {
+    res.redirect("/home");
+  } else {
+    res.render("home");
+  }
 });
 
 app.get("/login", function(req, res) {
-  res.render("home");
+  if (req.session.email) {
+    res.redirect("/home");
+  } else {
+    res.render("home");
+  }
 });
 
 app.get("/register", function(req, res) {
@@ -139,7 +147,7 @@ app.get("/confirmbooking", function(req, res) {
     "' , '" +
     date +
     "', '" +
-    search.class + 
+    search.class +
     "')";
   connection.query(bookingsql, function(err, result) {
     if (err) {
@@ -168,7 +176,7 @@ app.get("/confirmbooking", function(req, res) {
                 ")";
               console.log(ip);
               connection.query(ip);
-            } 
+            }
           }
         });
       });
@@ -187,19 +195,24 @@ app.post("/passenger", function(req, res) {
 app.post("/login", function(req, res) {
   var body = req.body;
   var email = body.email;
-  var pass = body.pass;
-  req.session.email = email;
+  var pass = body.pass;   
   var getPass = "SELECT password FROM login WHERE email='" + email + "'";
 
   connection.query(getPass, function(err, result, fields) {
     if (err) {
       console.log(err);
     } else {
-      var dbpass = result[0].password;
-      if (pass == dbpass) {
-        res.redirect("/home");
-      } else {
+      if(result.length==0){
         res.redirect("/login");
+      }
+      else{
+        var dbpass = result[0].password;
+        if (pass == dbpass) {
+          res.session.email=email;
+          res.redirect("/home");
+        } else {
+          res.redirect("/login");
+        }
       }
     }
   });
