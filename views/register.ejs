@@ -1,53 +1,59 @@
 <html>
-    <head>
-        <title>Create Account</title>
-        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-        <link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
-        <link rel= "stylesheet" type="text/css" href= "register.css">
-    </head>
-    <body>
-       <!--  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+<head>
+    <title>Create Account</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="register.css">
+</head>
+
+<body>
+    <!--  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
                 <img src="assets/flight.png" width="150" height="60" class="d-inline-block" alt="">
             </a>
         </nav> -->
 
-         <img src="flight.png" class="flight" alt="Plane">
+    <img src="flight.png" class="flight" alt="Plane">
 
-         <div class="Text">
-             <p>Flyserve</p>
-         </div>
-         <form class="register_form" method="POST" action="/register" onsubmit="return validateForm()">
-         <div class="rectangle">
-         <h1 class= "Text2">
-            Register
-        </h1>
-        <div class="EmailBoxPosition">
+    <a href="/">
+        <div class="Text">
+            <p>Flyserve</p>
+        </div>
+    </a>
+    <form class="register_form" method="POST" action="/register" onsubmit="return validateForm()">
+        <div class="rectangle">
+            <h1 class="Text2">
+                Register
+            </h1>
+            <div class="EmailBoxPosition">
                 <input class="textfield" type="text" id="name" name="name" placeholder="Name" required>
             </div>
-         <div class="EmailBoxPosition">
-             <input class="textfield" type="email" id="email" name="email" placeholder="Email" required>
-         </div>
-         <div class="PasswordBoxPosition">
-             <input class="textfield" type="password" id="pass" name="pass" placeholder="Password" required>
-         </div>
-         <div class="PasswordBoxPosition">
-                <input class="textfield" type="password" id="cpass" name="cpass" placeholder="Confirm Password" required>
+            <div class="EmailBoxPosition">
+                <input class="textfield" type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="PasswordBoxPosition">
+                <input class="textfield" type="password" id="pass" name="pass" placeholder="Password" required>
+            </div>
+            <div class="PasswordBoxPosition">
+                <input class="textfield" type="password" id="cpass" name="cpass" placeholder="Confirm Password"
+                    required>
             </div>
             <div class="EmailBoxPosition">
-                    <input class="textfield" type="number" min="1" max="100" id="age" name="age" placeholder="Age" required>
-                </div>
-                <div class="EmailBoxPosition">
-                    <b>Gender:</b><br>
-                        <input type="radio" id="male" name="gender" value="M" checked> Male <br>
-                        <input type="radio" id="female" name="gender" value="F"> Female <br>
-                    </div>
-         <div class="SubmitBoxPosition">
-             <input type="submit" class="button" value="Submit">
-         </div>
+                <input class="textfield" type="number" min="1" max="100" id="age" name="age" placeholder="Age" required>
+            </div>
+            <div class="EmailBoxPosition">
+                <b>Gender:</b><br>
+                <input type="radio" id="male" name="gender" value="M" checked> Male <br>
+                <input type="radio" id="female" name="gender" value="F"> Female <br>
+            </div>
+            <div class="SubmitBoxPosition">
+                <input type="submit" class="button" value="Submit">
+            </div>
         </div>
-        </form>
-        <script src="register.js"></script>
-    </body>
+    </form>
+    <script src="register.js"></script>
+</body>
+
 </html>
