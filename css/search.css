@@ -78,6 +78,18 @@ body{
 	height: 42px;
 }
 
+#logout-button {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	text-decoration: none;
+	background: orange;
+	color: black;
+	font-weight: bold;
+	padding: 1em 2em;
+	font-size: 1.1rem;
+}
+
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;

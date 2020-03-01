@@ -52,11 +52,11 @@ app.get("/register", function(req, res) {
   res.render("register");
 });
 
-app.get("/home", function(req, res) {
+app.get("/home",isLoggedIn, function(req, res) {
   res.render("search");
 });
 
-app.get("/search", function(req, res) {
+app.get("/search",isLoggedIn, function(req, res) {
   var r = (req.session.search = req.query);
   var from = r.from;
   var to = r.to;
@@ -90,7 +90,7 @@ app.get("/search", function(req, res) {
   });
 });
 
-app.get("/flights", function(req, res) {
+app.get("/flights",isLoggedIn, function(req, res) {
   var flights = req.session.message;
   // console.log(flights);
   res.render("results", { flights: flights });
@@ -115,14 +115,14 @@ app.get("/test", function(req, res) {
   res.send("Hello World!");
 });
 
-app.get("/book/:flight_id", function(req, res) {
+app.get("/book/:flight_id",isLoggedIn, function(req, res) {
   req.session.fid = req.params.flight_id;
   req.session.f = 1;
   req.session.passengers = [];
   res.redirect("/passenger");
 });
 
-app.get("/passenger", function(req, res) {
+app.get("/passenger",isLoggedIn, function(req, res) {
   var n = req.session.noofppl;
   var f = req.session.f;
   if (f <= n) {
@@ -132,7 +132,12 @@ app.get("/passenger", function(req, res) {
   }
 });
 
-app.get("/confirmbooking", function(req, res) {
+app.get("/logout", function(req, res) {
+  req.session.email = "";
+  res.redirect("/login");
+});
+
+app.get("/confirmbooking",isLoggedIn, function(req, res) {
   var id;
   var search = req.session.search;
   var d = new Date();
@@ -186,7 +191,7 @@ app.get("/confirmbooking", function(req, res) {
   });
 });
 
-app.post("/passenger", function(req, res) {
+app.post("/passenger",isLoggedIn, function(req, res) {
   req.session.f++;
   req.session.passengers.push(req.body);
   res.redirect("/passenger");
@@ -195,20 +200,19 @@ app.post("/passenger", function(req, res) {
 app.post("/login", function(req, res) {
   var body = req.body;
   var email = body.email;
-  var pass = body.pass;   
+  var pass = body.pass;
   var getPass = "SELECT password FROM login WHERE email='" + email + "'";
 
   connection.query(getPass, function(err, result, fields) {
     if (err) {
       console.log(err);
     } else {
-      if(result.length==0){
+      if (result.length == 0) {
         res.redirect("/login");
-      }
-      else{
+      } else {
         var dbpass = result[0].password;
         if (pass == dbpass) {
-          req.session.email=email;
+          req.session.email = email;
           res.redirect("/home");
         } else {
           res.redirect("/login");
@@ -250,4 +254,9 @@ app.listen(8080, function() {
   console.log("Server has started at http://localhost:8080");
 });
 
-async function checkBookings(p) {}
+function isLoggedIn(req, res, next) {
+  if (req.session.email) {
+    return next();
+  }
+  res.redirect("/login");
+}
