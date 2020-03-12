@@ -97,22 +97,7 @@ app.get("/flights",isLoggedIn, function(req, res) {
 });
 
 app.get("/test", function(req, res) {
-  // var bookingsql = "INSERT INTO bookings( customer_email,no_of_seats,flight_no, booking_date ) values('" +customer_email +"' , '" + no_of_seats +"' , '" + flight_no +"' , '"+ booking_date + "')";
-  // var bookingsql = "INSERT INTO bookings(customer_email,no_of_seats,flight_no, booking_date ) values('varavindhan2010@gmail.com' , '5' , 'SJ1234' , '2019-10-15')";
-  // connection.query(bookingsql,function(err,result){
-  //   console.log(err);
-  //   console.log(result);
-  // });
-  // console.log(req.session.search);
-  var sql = "CALL checkbookings('Aravindh')";
-  connection.query(sql, function(err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(result[0][0].len);
-    }
-  });
-  res.send("Hello World!");
+  res.render("confirmbooking");
 });
 
 app.get("/book/:flight_id",isLoggedIn, function(req, res) {
