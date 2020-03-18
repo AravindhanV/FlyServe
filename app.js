@@ -4,19 +4,19 @@ var mysql = require("mysql");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "name",
-//   password: "MistakenFoe-6",
-//   database: "airline"
-// });
-
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "dbms",
-  password: "dbms",
+  user: "name",
+  password: "MistakenFoe-6",
   database: "airline"
 });
+
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "dbms",
+//   password: "dbms",
+//   database: "airline"
+// });
 
 connection.connect(function(err) {
   if (err) throw err;
