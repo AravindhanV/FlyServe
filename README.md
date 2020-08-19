@@ -12,11 +12,11 @@ The following dependencies are required:
 
 ## Screenshots
 <p align="Center">
-  <img width="450" src="https://github.com/AravindhanV/images1/raw/master/login.png">
+  <img width="380" src="https://github.com/AravindhanV/images1/raw/master/login.png">
   &nbsp&nbsp&nbsp&nbsp
-   <img width="450"  src="https://github.com/AravindhanV/images1/raw/master/register.png">
-    <img width="450" src="https://github.com/AravindhanV/images1/raw/master/booking.png">
+   <img width="380"  src="https://github.com/AravindhanV/images1/raw/master/register.png">
+    <img width="380" src="https://github.com/AravindhanV/images1/raw/master/booking.png">
   &nbsp&nbsp&nbsp&nbsp
-   <img width="450"  src="https://github.com/AravindhanV/images1/raw/master/results.png">
-    <img width="450" src="https://github.com/AravindhanV/images1/raw/master/passenger.png">
+   <img width="380"  src="https://github.com/AravindhanV/images1/raw/master/results.png">
+    <img width="380" src="https://github.com/AravindhanV/images1/raw/master/passenger.png">
 </p>
