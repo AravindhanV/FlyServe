@@ -9,6 +9,7 @@ The following dependencies are required:
 * Web Browser
 * MySQL
 * npm
+* MySQL Server
 
 ## Screenshots
 <p align="Center">
